@@ -1,0 +1,15 @@
+.products {
+  padding: 1em;
+  display: grid;
+  gap: 1em;
+  grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+  justify-items: center;
+
+  &__product {
+    box-shadow: -4px 11px 31px -7px rgba(0, 0, 0, 0.34);
+  }
+}
+
+.container {
+  background-color: red;
+}

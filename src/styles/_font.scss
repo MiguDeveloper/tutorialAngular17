@@ -1,0 +1,7 @@
+@use "variables/typography.scss" as typo;
+@font-face {
+  font-family: typo.$main-family-black;
+  src: url("../assets/fonts/Poppins-Black.ttf") format("truetype");
+  font-weight: 900;
+  font-style: normal;
+}
