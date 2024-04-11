@@ -1,0 +1,62 @@
+<div class="container">
+  <h1 class="container__title">Lista de Tareas</h1>
+  <section>
+    <input
+      [(ngModel)]="inputValue"
+      type="text"
+      placeholder="Ingrese una tarea"
+    />
+    <button (click)="updateTask()">Actualizar tarea</button>
+    <button (click)="refresh()">Actualizar Lista</button>
+  </section>
+  <br />
+  @for( task of list_task;track i; let i=$index){
+  <div
+    class="task"
+    [ngClass]="{
+      'task--completed': task.status === 'COMPLETED',
+      'task--progress': task.status === 'PROGRESS'
+    }"
+  >
+    <span>Tarea: {{ i + 1 }} </span>
+    <p [ngStyle]="{ color: task.status === 'COMPLETED' ? 'green' : 'white' }">
+      {{ task.task }}
+    </p>
+    @if(task.status === 'COMPLETED'){
+    <img class="task__icon" src="assets/icons/status-completed.png" />
+    }@else {
+    <img class="task__icon" src="assets/icons/status-pending.png" />
+    }
+
+    <section>
+      <select
+        class="task__status"
+        (change)="changeStatus(task)"
+        [(ngModel)]="task.status"
+      >
+        @for(status of LIST_OBJECT_STATES;track status.key; let idx=$index){
+        <option [value]="status.key">
+          {{ status.text }}
+        </option>
+        }
+      </select>
+
+      <select [(ngModel)]="task.priority">
+        @for(priority of PRYORITY_LIST; track priority.key; let idx=$index){
+        <option [value]="priority.key">
+          {{ priority.text }}
+        </option>
+        }
+      </select>
+    </section>
+
+    @switch(task.priority){ @case('HIGH'){
+    <span class="task__priority-info">Esta tarea es prioritaria</span>
+    } @case('MEDIUM'){
+    <span class="task__priority-info">Te recomiendo hacer esta tarea</span>
+    } @default{
+    <span class="task__priority-info">Prioridad baja</span>
+    } }
+  </div>
+  }
+</div>

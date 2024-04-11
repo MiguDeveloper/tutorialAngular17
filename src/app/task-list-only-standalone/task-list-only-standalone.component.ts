@@ -1,0 +1,96 @@
+import { Component } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import {
+  IPriority,
+  IStatus,
+  ITask,
+  StatusType,
+} from '../models/components.interface';
+import {
+  NgClass,
+  NgFor,
+  NgIf,
+  NgStyle,
+  NgSwitch,
+  NgSwitchCase,
+  NgSwitchDefault,
+} from '@angular/common';
+
+@Component({
+  selector: 'app-task-list-only-standalone',
+  standalone: true,
+  imports: [
+    FormsModule,
+    NgClass,
+    NgStyle,
+    NgSwitch,
+    NgIf,
+    NgFor,
+    NgSwitchCase,
+    NgSwitchDefault,
+  ],
+  templateUrl: './task-list-only-standalone.component.html',
+  styleUrl: './task-list-only-standalone.component.scss',
+})
+export class TaskListOnlyStandaloneComponent {
+  readonly LIST_STATES: StatusType[] = ['COMPLETED', 'PROGRESS', 'PENDING'];
+  readonly LIST_OBJECT_STATES: IStatus[] = [
+    { key: 'COMPLETED', text: 'Completado' },
+    { key: 'PROGRESS', text: 'En progreso' },
+    { key: 'PENDING', text: 'Pendiente' },
+  ];
+
+  readonly PRYORITY_LIST: IPriority[] = [
+    { key: 'HIGH', text: 'Alta' },
+    { key: 'MEDIUM', text: 'Media' },
+    { key: 'LOW', text: 'Baja' },
+  ];
+
+  list_task: ITask[] = [
+    {
+      priority: 'HIGH',
+      task: 'Aprender TypeScript',
+      status: 'PENDING',
+    },
+    {
+      priority: 'LOW',
+      task: 'Mensajear a mi ex :v',
+      status: 'PENDING',
+    },
+  ];
+
+  colorText = 'white';
+  inputValue = 'aaa';
+
+  trackByItems(index: number, item: ITask) {
+    return index;
+  }
+
+  refresh(): void {
+    this.list_task = [
+      {
+        priority: 'HIGH',
+        task: 'Aprender TypeScript',
+        status: 'PENDING',
+      },
+      {
+        priority: 'LOW',
+        task: 'Mensajear a mi ex :v',
+        status: 'PENDING',
+      },
+    ];
+  }
+
+  updateTask(): void {
+    this.list_task[1] = {
+      priority: 'LOW',
+      task: this.inputValue,
+      status: 'PENDING',
+    };
+    // this.list_task[1].status = 'COMPLETED';
+  }
+
+  changeStatus(task: ITask): void {
+    this.colorText = task.status === 'COMPLETED' ? 'green' : 'white';
+  }
+}
