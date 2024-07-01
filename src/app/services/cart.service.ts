@@ -9,6 +9,7 @@ export class CartService {
   private _productDetail: IDetailProduct[] = [];
   private _count = 0;
   cartObservable$ = new Subject<number>();
+  listProducts$ = new Subject<IDetailProduct[]>();
 
   constructor() {}
 
@@ -28,7 +29,8 @@ export class CartService {
 
   private _updateProduct(idx: number) {
     const detailProduct = this._productDetail[idx];
-    detailProduct.count = detailProduct.count++;
+    // fixed count
+    detailProduct.count = ++detailProduct.count;
     detailProduct.total = detailProduct.count * detailProduct.product.price;
     this._updateCount();
   }
@@ -36,5 +38,6 @@ export class CartService {
   private _updateCount() {
     this._count = this._count + 1;
     this.cartObservable$.next(this._count);
+    this.listProducts$.next(this._productDetail);
   }
 }

@@ -11,6 +11,11 @@
   <mat-drawer-container class="drawer-container" [hasBackdrop]="true">
     <mat-drawer #drawer mode="over" position="end">
       <h3>Productos Seleccionados</h3>
+      <ul>
+        @for (product of products; track $index) {
+        <li>{{ product.product.title }} - {{ product.count }}</li>
+        }
+      </ul>
     </mat-drawer>
     <mat-drawer-content class="drawer-container__content">
       <h1>Lista de productos</h1>

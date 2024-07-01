@@ -11,6 +11,7 @@ import { IApiResponseProduct } from '../../services/models/product-api.interface
 import { CartService } from '../../services/cart.service';
 import { AsyncPipe } from '@angular/common';
 import { ProductComponent } from './product/product.component';
+import { IDetailProduct } from '../../services/models/cart.interface';
 
 @Component({
   selector: 'app-home-page',
@@ -31,7 +32,7 @@ export class HomePageComponent implements OnInit {
   private readonly _prodApiService = inject(ProductApiService);
   private readonly _cartService = inject(CartService);
 
-  products: IApiResponseProduct[] = [];
+  products: IDetailProduct[] = [];
   products$!: Observable<IApiResponseProduct[]>;
   count = 0;
 
@@ -40,5 +41,9 @@ export class HomePageComponent implements OnInit {
     this._cartService.cartObservable$.subscribe(
       (respCount) => (this.count = respCount)
     );
+
+    this._cartService.listProducts$.subscribe((prods) => {
+      this.products = prods;
+    });
   }
 }
