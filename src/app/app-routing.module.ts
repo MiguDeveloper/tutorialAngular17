@@ -11,20 +11,24 @@ import { ProductsResolverService } from './services/products.resolver';
 const routes: Routes = [
   {
     path: 'home',
+    title: 'Inicio',
     component: HomePageComponent,
   },
   {
     path: 'login',
+    title: 'Inicio de sesión',
     component: LoginPageComponent,
   },
   {
     path: 'payment/:id',
     component: PaymentPageComponent,
+    title: 'payment',
     data: { title: 'Pagos' },
     resolve: { products: ProductsResolverService },
     children: [
       {
         path: 'simple-product-detail',
+        title: 'Simple product',
         component: SimpleProductDetailPageComponent,
       },
       {
@@ -55,7 +59,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, { bindToComponentInputs: true })],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}
