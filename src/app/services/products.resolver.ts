@@ -1,23 +1,28 @@
-// import { ResolveFn } from '@angular/router';
-
-// export const productsResolver: ResolveFn<boolean> = (route, state) => {
-//   return true;
-// };
-
-import { Injectable, inject } from '@angular/core';
-import { ActivatedRouteSnapshot, Resolve } from '@angular/router';
-import { Observable, delay } from 'rxjs';
-import { IApiResponseProduct } from './models/product-api.interface';
 import { ProductApiService } from './product-api.service';
+import { ResolveFn } from '@angular/router';
+import { inject } from '@angular/core';
+import { IApiResponseProduct } from './models/product-api.interface';
 
-@Injectable({
-  providedIn: 'root',
-})
-export class ProductsResolverService implements Resolve<IApiResponseProduct[]> {
-  private readonly _productsApiService = inject(ProductApiService);
+export const ProductsResolverServiceFn: ResolveFn<IApiResponseProduct[]> = (
+  route,
+  state
+) => {
+  const _productsApiService = inject(ProductApiService);
+  console.log('Productos desde el resolver...', route);
+  return _productsApiService.getProducts$();
+};
 
-  resolve(route: ActivatedRouteSnapshot): Observable<IApiResponseProduct[]> {
-    console.log('Productos desde el resolver...', route);
-    return this._productsApiService.getProducts$();
-  }
-}
+// import { ActivatedRouteSnapshot, Resolve } from '@angular/router';
+// import { Observable, delay } from 'rxjs';
+
+// @Injectable({
+//   providedIn: 'root',
+// })
+// export class ProductsResolverServiceFn implements Resolve<IApiResponseProduct[]> {
+//   private readonly _productsApiService = inject(ProductApiService);
+
+//   resolve(route: ActivatedRouteSnapshot): Observable<IApiResponseProduct[]> {
+//     console.log('Productos desde el resolver...', route);
+//     return this._productsApiService.getProducts$();
+//   }
+// }

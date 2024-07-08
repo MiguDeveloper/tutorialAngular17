@@ -13,6 +13,7 @@ import { AsyncPipe } from '@angular/common';
 import { ProductComponent } from './product/product.component';
 import { IDetailProduct } from '../../services/models/cart.interface';
 import { ActivatedRoute, ParamMap, Router, RouterLink } from '@angular/router';
+import { DemoService } from '../../services/demo.service';
 
 @Component({
   selector: 'app-home-page',
@@ -37,6 +38,7 @@ export class HomePageComponent implements OnInit {
   private readonly _cartService = inject(CartService);
   private readonly _activatedRoute = inject(ActivatedRoute);
   private readonly _router = inject(Router);
+  private readonly _demoService = inject(DemoService);
 
   listProducts: IDetailProduct[] = [];
   products$!: Observable<IApiResponseProduct[]>;

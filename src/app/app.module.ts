@@ -16,7 +16,7 @@ import { MatInput } from '@angular/material/input';
 import { MatIcon } from '@angular/material/icon';
 
 @NgModule({
-  declarations: [AppComponent, NotFountPageComponent, LoginPageComponent],
+  declarations: [AppComponent, NotFountPageComponent],
   imports: [
     CommonModule,
     BrowserModule,
