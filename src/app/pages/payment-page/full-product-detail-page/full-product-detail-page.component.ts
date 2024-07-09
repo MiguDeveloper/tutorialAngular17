@@ -6,7 +6,7 @@ import { DemoService } from '../../../services/demo.service';
   standalone: true,
   templateUrl: './full-product-detail-page.component.html',
   styleUrl: './full-product-detail-page.component.scss',
-  providers: [DemoService],
+  //providers: [DemoService],
 })
 export default class FullProductDetailPageComponent {
   private readonly _demoService = inject(DemoService);

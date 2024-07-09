@@ -1,0 +1,94 @@
+<div class="container">
+  <mat-card class="card">
+    <mat-card-header class="card__title">
+      <mat-card-title>Registro</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <form [formGroup]="formGroup" class="form">
+        <mat-form-field appearance="outline">
+          <mat-label>Nombre</mat-label>
+          <input
+            matInput
+            formControlName="name"
+            type="text"
+            placeholder="Nombre"
+          />
+          @if (nameField.hasError('required')) {
+          <mat-error>El nombre es requerido</mat-error>
+          }
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Apellidos</mat-label>
+          <input
+            matInput
+            formControlName="lastName"
+            type="text"
+            placeholder="Apellidos"
+          />
+          @if (lastNameField.hasError('required')) {
+          <mat-error>Los apellidos son requerido</mat-error>
+          }
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Email</mat-label>
+          <input
+            matInput
+            formControlName="email"
+            type="email"
+            placeholder="Email"
+          />
+          @if (emailField.hasError('required')) {
+          <mat-error>El email es requerido</mat-error>
+          }
+        </mat-form-field>
+        {{ formGroup.get("email")?.errors | json }}
+        <mat-form-field appearance="outline">
+          <mat-label>Password</mat-label>
+          <input
+            matInput
+            formControlName="password"
+            type="password"
+            placeholder="Password"
+          />
+          @if (passwordField.hasError('required')) {
+          <mat-error>El password es requerido</mat-error>
+          } @if (passwordField.hasError('customPasswordValidator')) {
+          <mat-error
+            >Debe teber minusculas y mayusculas y mayor a 8
+            caracteres</mat-error
+          >
+          }
+        </mat-form-field>
+        {{ formGroup.get("password")?.errors | json }}
+        <mat-form-field appearance="outline">
+          <mat-label>Repetir contraseña</mat-label>
+          <input
+            matInput
+            formControlName="confirmPassword"
+            [errorStateMatcher]="passwordStateMatcher"
+            type="password"
+            placeholder="Repetir password"
+          />
+          @if (confirmPasswordField.hasError('required')) {
+          <mat-error>Confirmar el password es requerido</mat-error>
+          } @if (formGroup.hasError('crossConfirmPasswordError')) {
+          <mat-error>Las contraseñas no coinciden</mat-error>
+          }
+        </mat-form-field>
+        {{ confirmPasswordField.errors | json }}
+        <pre>
+errors:
+          {{ formGroup.errors | json }}
+        </pre>
+        <button mat-raised-button color="primary" (click)="clickRegister()">
+          Registrarse
+        </button>
+      </form>
+      <p>valid: {{ formGroup.valid }}</p>
+      <p>invalid: {{ formGroup.invalid }}</p>
+      <pre>
+        {{ formGroup.value | json }}
+      </pre>
+    </mat-card-content>
+  </mat-card>
+</div>

@@ -24,6 +24,12 @@ export const ROUTES_ROOT: Routes = [
     loadChildren: () => import('./pages/payment-page/payment-page.routes'),
   },
   {
+    path: 'register',
+    title: 'Registro',
+    loadComponent: () =>
+      import('./pages/register-page/register-page.component'),
+  },
+  {
     path: '',
     redirectTo: '/home',
     pathMatch: 'full',

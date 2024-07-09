@@ -17,7 +17,7 @@
         <mat-icon matSuffix>lock</mat-icon>
       </mat-form-field>
 
-      <button
+      <!-- <button
         mat-raised-button
         color="primary"
         routerLink="/home"
@@ -25,9 +25,17 @@
         [state]="{ isAdmin: true }"
       >
         Iniciar sesión
-      </button>
+      </button> -->
       <button mat-raised-button color="primary" (click)="clickSingUp()">
         Iniciar sesión
+      </button>
+      <button
+        mat-raised-button
+        color="primary"
+        [routerLink]="['/register']"
+        class="card-content__register"
+      >
+        Registrarse
       </button>
     </mat-card-content>
   </mat-card>
