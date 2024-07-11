@@ -1,35 +1,103 @@
-import { Component } from '@angular/core';
-import { MatTableModule } from '@angular/material/table';
+import { CommonModule } from '@angular/common';
+import { Component, inject, OnInit } from '@angular/core';
+import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MatTableDataSource, MatTableModule } from '@angular/material/table';
+import { debounceTime } from 'rxjs';
 
-export interface IPeriodicElement {
+interface ICartProduct {
   name: string;
-  position: number;
-  weight: number;
-  symbol: string;
+  price: number;
+  quantity: number;
+  total: number;
 }
 
-const ELEMENTS_DATA: IPeriodicElement[] = [
-  { position: 1, name: 'Hydrogen', weight: 1.0079, symbol: 'H' },
-  { position: 2, name: 'Helium', weight: 4.0026, symbol: 'He' },
-  { position: 3, name: 'Lithium', weight: 6.941, symbol: 'Li' },
-  { position: 4, name: 'Beryllium', weight: 9.0122, symbol: 'Be' },
-  { position: 5, name: 'Boron', weight: 10.811, symbol: 'B' },
-  { position: 6, name: 'Carbon', weight: 12.0107, symbol: 'C' },
-  { position: 7, name: 'Nitrogen', weight: 14.0067, symbol: 'N' },
-  { position: 8, name: 'Oxygen', weight: 15.9994, symbol: 'O' },
-  { position: 9, name: 'Fluorine', weight: 18.9984, symbol: 'F' },
-  { position: 10, name: 'Neon', weight: 20.1797, symbol: 'Ne' },
+const PRODUCTS: ICartProduct[] = [
+  { name: 'Mens Casual Slim Fit', price: 109.95, quantity: 2, total: 219.9 },
+  {
+    name: "ohn Hardy Women's Legends Naga Gold & Silver Dragon",
+    price: 695,
+    quantity: 1,
+    total: 695,
+  },
+  {
+    name: 'ierced Owl Rose Gold Plated Stainless Steel Double',
+    price: 10.99,
+    quantity: 1,
+    total: 10.99,
+  },
 ];
 
 @Component({
   selector: 'app-simple-product-detail-page',
   standalone: true,
-  imports: [MatTableModule],
+  imports: [
+    MatTableModule,
+    MatInputModule,
+    MatFormFieldModule,
+    ReactiveFormsModule,
+    CommonModule,
+    MatIconModule,
+    MatButtonModule,
+  ],
   templateUrl: './simple-product-detail-page.component.html',
   styleUrl: './simple-product-detail-page.component.scss',
 })
-export class SimpleProductDetailPageComponent {
-  private readonly _periodicElement: IPeriodicElement = ELEMENTS_DATA[0];
-  displayedColumns: string[] = Object.keys(this._periodicElement);
-  dataSource = ELEMENTS_DATA;
+export class SimpleProductDetailPageComponent implements OnInit {
+  private readonly _cartProduct: ICartProduct = PRODUCTS[0];
+  private readonly _fb = inject(FormBuilder);
+  displayedColumns: string[] = [...Object.keys(this._cartProduct), 'actions'];
+
+  formGroup = this._fb.group({
+    total: PRODUCTS.reduce((acc, product) => acc + product.total, 0),
+    products: this._fb.array(
+      PRODUCTS.map((product) => this._createFormGroup(product))
+    ),
+  });
+  // dataSource = PRODUCTS;
+  dataSource = new MatTableDataSource(
+    this.formGroup.controls.products.controls
+  );
+
+  ngOnInit(): void {
+    this._calculate_row_total();
+  }
+  private _createFormGroup(product: ICartProduct) {
+    return this._fb.group({
+      name: product.name,
+      price: product.price,
+      quantity: product.quantity,
+      total: product.total,
+    });
+  }
+
+  private _calculate_row_total() {
+    this.productsFormArray.controls.forEach(
+      ({ controls: { quantity, price, total } }) => {
+        quantity.valueChanges.pipe(debounceTime(200)).subscribe((value) => {
+          console.log('---- Gaaaaa ----');
+          const priceValue = price.value!;
+          let totalValue = 0;
+          if (value) {
+            totalValue = priceValue * value;
+          }
+          total.setValue(totalValue);
+        });
+      }
+    );
+  }
+  get productsFormArray() {
+    return this.formGroup.controls.products;
+  }
+
+  clickDelete(index: number) {
+    this.productsFormArray.removeAt(index);
+    this.dataSource.data = this.productsFormArray.controls;
+    // esto es una funcion privada por ello no se recomienda usarla por un tema de buenas practicas
+    // ya que en una posible actualizacion se podria quitar
+    //this.dataSource._updateChangeSubscription();
+  }
 }
