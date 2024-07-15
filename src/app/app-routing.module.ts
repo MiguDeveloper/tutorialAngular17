@@ -5,8 +5,9 @@ import { NotFountPageComponent } from './pages/not-fount-page/not-fount-page.com
 import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { PaymentPageComponent } from './pages/payment-page/payment-page.component';
 import { SimpleProductDetailPageComponent } from './pages/payment-page/simple-product-detail-page/simple-product-detail-page.component';
-import { FullProductDetailPageComponent } from './pages/payment-page/full-product-detail-page/full-product-detail-page.component';
+
 import { ProductsResolverServiceFn } from './services/products.resolver';
+import FullProductDetailPageComponent from './pages/payment-page/full-product-detail-page/full-product-detail-page.component';
 
 const routes: Routes = [
   {
@@ -17,7 +18,10 @@ const routes: Routes = [
   {
     path: 'login',
     title: 'Inicio de sesión',
-    component: LoginPageComponent,
+    loadChildren: () =>
+      import('./pages/login-page/login-page.module').then(
+        (m) => m.LoginPageModule
+      ),
   },
   {
     path: 'payment/:id',
