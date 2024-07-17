@@ -2,6 +2,8 @@ import { Routes } from '@angular/router';
 import { HomePageComponent } from './pages/home-page/home-page.component';
 import { NotFountPageComponent } from './pages/not-fount-page/not-fount-page.component';
 import { ProductsResolverServiceFn } from './services/products.resolver';
+import { authGuardFn } from './guards/auth.guard';
+import { exitGuardFn } from './guards/exit.guard';
 
 export const ROUTES_ROOT: Routes = [
   {
@@ -20,12 +22,14 @@ export const ROUTES_ROOT: Routes = [
   {
     path: 'payment/:id',
     data: { title: 'Pagos' },
+    canActivate: [authGuardFn],
     resolve: { products: ProductsResolverServiceFn },
     loadChildren: () => import('./pages/payment-page/payment-page.routes'),
   },
   {
     path: 'register',
     title: 'Registro',
+    canDeactivate: [exitGuardFn],
     loadComponent: () =>
       import('./pages/register-page/register-page.component'),
   },

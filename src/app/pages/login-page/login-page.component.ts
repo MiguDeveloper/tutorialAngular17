@@ -29,6 +29,8 @@ export class LoginPageComponent {
     this._authService.login(this.form.getRawValue()).subscribe(
       (response) => {
         localStorage.setItem('token', response.token);
+        localStorage.setItem('role', 'admin');
+        this._router.navigate(['/']);
       },
       (error) => {
         console.log('Error controlado desde el componente ', error);
