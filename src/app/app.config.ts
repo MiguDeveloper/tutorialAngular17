@@ -1,5 +1,9 @@
 import { ApplicationConfig } from '@angular/core';
-import { provideRouter, withComponentInputBinding } from '@angular/router';
+import {
+  provideRouter,
+  withComponentInputBinding,
+  withHashLocation,
+} from '@angular/router';
 
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import {
@@ -15,7 +19,7 @@ import { DemoInterceptor } from './interceptors/demo.interceptor';
 
 export const appConfig: ApplicationConfig = {
   providers: [
-    provideRouter(ROUTES_ROOT, withComponentInputBinding()),
+    provideRouter(ROUTES_ROOT, withComponentInputBinding(), withHashLocation()),
     provideAnimationsAsync(),
     provideHttpClient(
       withInterceptorsFromDi(),

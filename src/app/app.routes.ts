@@ -34,6 +34,11 @@ export const ROUTES_ROOT: Routes = [
       import('./pages/register-page/register-page.component'),
   },
   {
+    path: 'user',
+    title: 'Usuario',
+    loadChildren: () => import('./pages/user/user.routes'),
+  },
+  {
     path: '',
     redirectTo: '/home',
     pathMatch: 'full',
