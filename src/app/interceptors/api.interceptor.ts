@@ -13,7 +13,7 @@ import { Observable } from 'rxjs';
 export class ApiInterceptor implements HttpInterceptor {
   intercept(
     req: HttpRequest<any>,
-    next: HttpHandler
+    next: HttpHandler,
   ): Observable<HttpEvent<any>> {
     console.log('---- Api interceptor ---');
     if (req.url.includes('white_')) {
@@ -23,7 +23,7 @@ export class ApiInterceptor implements HttpInterceptor {
 
     const headers = req.headers.set(
       'Authorization',
-      localStorage.getItem('token') || ''
+      localStorage.getItem('token') || '',
     );
     const reqClone = req.clone({ headers });
     return next.handle(reqClone);

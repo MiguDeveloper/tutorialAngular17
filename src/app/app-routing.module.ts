@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomePageComponent } from './pages/home-page/home-page.component';
 import { NotFountPageComponent } from './pages/not-fount-page/not-fount-page.component';
-import { LoginPageComponent } from './pages/login-page/login-page.component';
 import { PaymentPageComponent } from './pages/payment-page/payment-page.component';
 import { SimpleProductDetailPageComponent } from './pages/payment-page/simple-product-detail-page/simple-product-detail-page.component';
 
@@ -20,7 +19,7 @@ const routes: Routes = [
     title: 'Inicio de sesión',
     loadChildren: () =>
       import('./pages/login-page/login-page.module').then(
-        (m) => m.LoginPageModule
+        (m) => m.LoginPageModule,
       ),
   },
   {
