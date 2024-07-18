@@ -16,7 +16,7 @@ export class CartService {
   addToCart(product: IProduct) {
     const idProduct = product.id;
     const index = this._productDetail.findIndex(
-      ({ product }) => product.id === idProduct
+      ({ product }) => product.id === idProduct,
     );
 
     if (index === -1) {

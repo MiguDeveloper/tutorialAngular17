@@ -27,11 +27,11 @@ export class PaymentPageComponent implements OnInit {
   ngOnInit(): void {
     console.log(
       'Datos enviados por Params:',
-      this._activatedRoute.snapshot.params
+      this._activatedRoute.snapshot.params,
     );
     console.log(
       'Datos enviados por Data property:',
-      this._activatedRoute.snapshot.data
+      this._activatedRoute.snapshot.data,
     );
     console.log('@Input() params => ', this.id);
     console.log('@Input() title valor por ruta => ', this.title);

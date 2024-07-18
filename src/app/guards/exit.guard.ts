@@ -40,7 +40,7 @@ export interface CanComponentDeactivate {
 }
 
 export const exitGuardFn: CanDeactivateFn<CanComponentDeactivate> = (
-  component: CanComponentDeactivate
+  component: CanComponentDeactivate,
 ) => {
   const dialog = inject(MatDialog);
   const formValid = component.canDeactivate();

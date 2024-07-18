@@ -16,7 +16,7 @@ export const ROUTES_ROOT: Routes = [
     title: 'Inicio de sesión',
     loadChildren: () =>
       import('./pages/login-page/login-page.module').then(
-        (m) => m.LoginPageModule
+        (m) => m.LoginPageModule,
       ),
   },
   {

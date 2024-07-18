@@ -4,8 +4,8 @@ import { CanActivateFn } from '@angular/router';
 import { exitGuard } from './exit.guard';
 
 describe('exitGuard', () => {
-  const executeGuard: CanActivateFn = (...guardParameters) => 
-      TestBed.runInInjectionContext(() => exitGuard(...guardParameters));
+  const executeGuard: CanActivateFn = (...guardParameters) =>
+    TestBed.runInInjectionContext(() => exitGuard(...guardParameters));
 
   beforeEach(() => {
     TestBed.configureTestingModule({});

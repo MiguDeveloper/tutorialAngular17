@@ -3,7 +3,7 @@ import { appConfig } from './app/app.config';
 import { AppStandaloneComponent } from './app/app-standalone.component';
 
 bootstrapApplication(AppStandaloneComponent, appConfig).catch((err) =>
-  console.error(err)
+  console.error(err),
 );
 
 //#region INICIAR APLICACION ENFOQUE MODULOS

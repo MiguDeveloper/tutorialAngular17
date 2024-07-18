@@ -8,10 +8,9 @@ describe('NotFountPageComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [NotFountPageComponent]
-    })
-    .compileComponents();
-    
+      imports: [NotFountPageComponent],
+    }).compileComponents();
+
     fixture = TestBed.createComponent(NotFountPageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

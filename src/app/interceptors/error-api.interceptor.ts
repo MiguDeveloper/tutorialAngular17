@@ -25,6 +25,6 @@ export const errorApiInterceptor: HttpInterceptorFn = (req, next) => {
         });
       }
       return throwError(() => error);
-    })
+    }),
   );
 };

@@ -16,8 +16,8 @@
             type="text"
             placeholder="Nombre"
           />
-          @if (nameField.hasError('required')) {
-          <mat-error>El nombre es requerido</mat-error>
+          @if (nameField.hasError("required")) {
+            <mat-error>El nombre es requerido</mat-error>
           }
         </mat-form-field>
         <mat-form-field appearance="outline">
@@ -28,8 +28,8 @@
             type="text"
             placeholder="Apellidos"
           />
-          @if (lastNameField.hasError('required')) {
-          <mat-error>Los apellidos son requerido</mat-error>
+          @if (lastNameField.hasError("required")) {
+            <mat-error>Los apellidos son requerido</mat-error>
           }
         </mat-form-field>
         <mat-form-field appearance="outline">
@@ -40,8 +40,8 @@
             type="email"
             placeholder="Email"
           />
-          @if (emailField.hasError('required')) {
-          <mat-error>El email es requerido</mat-error>
+          @if (emailField.hasError("required")) {
+            <mat-error>El email es requerido</mat-error>
           }
         </mat-form-field>
         {{ formGroup.get("email")?.errors | json }}
@@ -53,13 +53,14 @@
             type="password"
             placeholder="Password"
           />
-          @if (passwordField.hasError('required')) {
-          <mat-error>El password es requerido</mat-error>
-          } @if (passwordField.hasError('customPasswordValidator')) {
-          <mat-error
-            >Debe teber minusculas y mayusculas y mayor a 8
-            caracteres</mat-error
-          >
+          @if (passwordField.hasError("required")) {
+            <mat-error>El password es requerido</mat-error>
+          }
+          @if (passwordField.hasError("customPasswordValidator")) {
+            <mat-error
+              >Debe teber minusculas y mayusculas y mayor a 8
+              caracteres</mat-error
+            >
           }
         </mat-form-field>
         {{ formGroup.get("password")?.errors | json }}
@@ -72,10 +73,11 @@
             type="password"
             placeholder="Repetir password"
           />
-          @if (confirmPasswordField.hasError('required')) {
-          <mat-error>Confirmar el password es requerido</mat-error>
-          } @if (formGroup.hasError('crossConfirmPasswordError')) {
-          <mat-error>Las contraseñas no coinciden</mat-error>
+          @if (confirmPasswordField.hasError("required")) {
+            <mat-error>Confirmar el password es requerido</mat-error>
+          }
+          @if (formGroup.hasError("crossConfirmPasswordError")) {
+            <mat-error>Las contraseñas no coinciden</mat-error>
           }
         </mat-form-field>
         {{ confirmPasswordField.errors | json }}

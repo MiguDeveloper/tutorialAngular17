@@ -34,7 +34,7 @@ export class LoginPageComponent {
       },
       (error) => {
         console.log('Error controlado desde el componente ', error);
-      }
+      },
     );
   }
 }

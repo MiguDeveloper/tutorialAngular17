@@ -8,10 +8,9 @@ describe('FullProductDetailPageComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [FullProductDetailPageComponent]
-    })
-    .compileComponents();
-    
+      declarations: [FullProductDetailPageComponent],
+    }).compileComponents();
+
     fixture = TestBed.createComponent(FullProductDetailPageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

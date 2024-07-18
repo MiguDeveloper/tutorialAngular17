@@ -8,10 +8,9 @@ describe('SimpleProductDetailPageComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [SimpleProductDetailPageComponent]
-    })
-    .compileComponents();
-    
+      declarations: [SimpleProductDetailPageComponent],
+    }).compileComponents();
+
     fixture = TestBed.createComponent(SimpleProductDetailPageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

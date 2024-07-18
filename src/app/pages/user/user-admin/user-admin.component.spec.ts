@@ -8,10 +8,9 @@ describe('UserAdminComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [UserAdminComponent]
-    })
-    .compileComponents();
-    
+      imports: [UserAdminComponent],
+    }).compileComponents();
+
     fixture = TestBed.createComponent(UserAdminComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

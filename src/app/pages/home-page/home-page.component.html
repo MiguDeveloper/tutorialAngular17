@@ -22,15 +22,15 @@
       </button>
       <ul>
         @for (product of listProducts; track $index) {
-        <li>{{ product.product.title }} - {{ product.count }}</li>
+          <li>{{ product.product.title }} - {{ product.count }}</li>
         }
       </ul>
     </mat-drawer>
     <mat-drawer-content class="drawer-container__content">
       <h1>Lista de productos</h1>
       <div class="products">
-        @for(product of products$ | async; track product.id){
-        <app-product [product]="product"></app-product>
+        @for (product of products$ | async; track product.id) {
+          <app-product [product]="product"></app-product>
         }
       </div>
     </mat-drawer-content>

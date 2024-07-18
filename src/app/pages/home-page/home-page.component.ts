@@ -47,7 +47,7 @@ export class HomePageComponent implements OnInit {
   constructor() {
     console.log(
       'Valores obtenidos por el state => ',
-      this._router.getCurrentNavigation()?.extras.state
+      this._router.getCurrentNavigation()?.extras.state,
     );
   }
 
@@ -62,7 +62,7 @@ export class HomePageComponent implements OnInit {
   private _getApis() {
     this.products$ = this._prodApiService.getProducts$();
     this._cartService.cartObservable$.subscribe(
-      (respCount) => (this.count = respCount)
+      (respCount) => (this.count = respCount),
     );
   }
 
@@ -70,7 +70,7 @@ export class HomePageComponent implements OnInit {
     console.log(this._activatedRoute.snapshot.queryParams);
     console.log(
       'QueryParamMap Get Edad',
-      this._activatedRoute.snapshot.queryParamMap.get('edad')
+      this._activatedRoute.snapshot.queryParamMap.get('edad'),
     );
     console.log('@Input() user valor por ruta => ', this.user);
 

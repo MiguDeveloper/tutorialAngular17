@@ -5,7 +5,7 @@ import { IApiResponseProduct } from './models/product-api.interface';
 
 export const ProductsResolverServiceFn: ResolveFn<IApiResponseProduct[]> = (
   route,
-  state
+  state,
 ) => {
   const _productsApiService = inject(ProductApiService);
   console.log('Productos desde el resolver...', route);

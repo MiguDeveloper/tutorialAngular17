@@ -41,7 +41,7 @@ export default class RegisterPageComponent implements CanComponentDeactivate {
   @HostListener('window:beforeunload', ['$event'])
   onBeforeReload(e: BeforeUnloadEvent) {
     const formValid = Object.values(this.formGroup.controls).some(
-      (control) => control.value !== ''
+      (control) => control.value !== '',
     );
     if (formValid) {
       e.preventDefault();
@@ -70,13 +70,13 @@ export default class RegisterPageComponent implements CanComponentDeactivate {
     },
     {
       validators: crossPasswordMatchingValidator,
-    }
+    },
   );
 
   canDeactivate(): Observable<boolean> | boolean {
     console.log('---- CanDeactive REGISTERPAGE ----');
     const formValid = Object.values(this.formGroup.controls).some(
-      (control) => control.value !== ''
+      (control) => control.value !== '',
     );
 
     return formValid;

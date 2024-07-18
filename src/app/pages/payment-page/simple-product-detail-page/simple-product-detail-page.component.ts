@@ -54,12 +54,12 @@ export class SimpleProductDetailPageComponent implements OnInit {
   formGroup = this._fb.group({
     total: PRODUCTS.reduce((acc, product) => acc + product.total, 0),
     products: this._fb.array(
-      PRODUCTS.map((product) => this._createFormGroup(product))
+      PRODUCTS.map((product) => this._createFormGroup(product)),
     ),
   });
   // dataSource = PRODUCTS;
   dataSource = new MatTableDataSource(
-    this.formGroup.controls.products.controls
+    this.formGroup.controls.products.controls,
   );
 
   ngOnInit(): void {
@@ -86,7 +86,7 @@ export class SimpleProductDetailPageComponent implements OnInit {
           }
           total.setValue(totalValue);
         });
-      }
+      },
     );
   }
   get productsFormArray() {
